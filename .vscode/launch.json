@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "cppvsdbg",
+            "request": "launch",
+            "preLaunchTask": "Build",
+            "name": "Debug",
+            "program": "${fileDirname}/build/debug.exe",
+            "args": [],
+            "cwd": "${fileDirname}",
+            "console": "externalTerminal"
+        },
+        {
+            "type": "cppvsdbg",
+            "request": "launch",
+            "preLaunchTask": "Build Release",
+            "name": "Release",
+            "program": "${fileDirname}/build/release.exe",
+            "args": [],
+            "cwd": "${fileDirname}",
+            "console": "externalTerminal"
+        }
+    ]
+}
