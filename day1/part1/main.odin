@@ -2,12 +2,13 @@ package main
 import "core:fmt"
 import "core:os"
 import "core:strings"
+import "core:strconv"
 
 main :: proc() 
 {
-    fmt.println("This is Day 1, Part 1.")
+    fmt.println("AdventOfCode25 | Day 1, part 1")
     
-    data, succes := os.read_entire_file("example_input.txt", context.allocator);
+    data, succes := os.read_entire_file("input.txt", context.allocator);
 	
 	if !succes 
 	{
@@ -17,23 +18,32 @@ main :: proc()
 
 	defer delete(data, context.allocator);
 
-	currentDialValue : int = 50
+	currentDialValue:int = 50
+	finalResult:int = 0
+
 	lines := strings.split_lines(string(data));
 
-	for character in lines 
+ 	for str in lines 
 	{
-			if character[0] == 'L'
-			{
-				fmt.println("left ")
-			}
-			else
-			{
-				fmt.println("right")
-			}
-	}
+        first_char := str[0:1]
+        rest := str[1:]
+        number, ok := strconv.parse_int(rest)
+		
+		if(first_char[0] == 'L')
+		{
+			currentDialValue -= number;
+			if(currentDialValue < 0) do currentDialValue = abs(abs(currentDialValue) - 100);
+		}
+		else
+		{
+			currentDialValue += number;
+			if(currentDialValue > 99) do currentDialValue -= 100;
+		}
 
-	for	i:= 0; i < len(lines); i+=1
-	{
+		if(currentDialValue == 0) do finalResult+=1;
 
-	}
+        fmt.printf("%s -> first: %s, number: %d, current dial value: %i\n", str, first_char, number, currentDialValue);
+    }
+	
+	fmt.printf("\nresult is: %i\n", finalResult)
 }

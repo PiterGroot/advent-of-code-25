@@ -20,11 +20,12 @@
             "type": "shell",
             "command": "odin",
             "args": [
-                "build",
-                ".",
-                "-debug",
-                "-out:build/debug.exe"
-            ],
+        "build",
+        ".",
+        "-debug",
+        "-o:none",
+        "-out:build/debug.exe"
+    ],
             "options": {
                 "cwd": "${fileDirname}"
             },
